@@ -29,5 +29,5 @@ The following notebooks contain the steps for generating the simulated data.
 
 * The **`Data`** folder contains all data tables and the necessary data for figure generation.
 * The **`Periodograms`** folder contains the periodicity search results for all observation days (**Extended Data Figure 1**).
-* The **`MC Samples*`** folders contains the simulated data.
+* The **`MC Samples*`** folders contain the simulated data.
 
