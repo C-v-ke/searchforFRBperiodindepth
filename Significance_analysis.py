@@ -2361,6 +2361,112 @@ def plot_q_null_distribution(libs, figsize=(8, 6)):
     plt.tight_layout()
     return fig
 
+
+def save_binned_histogram_data_from_global_t_null(outdir_global, fname_global, save_path=None):
+    """
+    Extract the histogram-binned data from the large result file, saving only:
+    - bin_edges
+    - bin_counts
+    - T_max_obs
+    - p_T
+    - sigma_T
+    """
+    input_path = outdir_global + '\\' + fname_global
+    meta_single, arr_single, _ = load_global_single_result(input_path)
+    tnull = np.asarray(arr_single["T_null_distribution"], dtype=np.float64)
+    tobs = float(meta_single["observed_global_stats"]["T_max_obs"])
+    p_t = float(meta_single["results"]["p_T"])
+    sig_t = float(meta_single["results"]["sigma_T"])
+    xmax = float(max(np.max(tnull), tobs, 1.2))
+    bins = np.linspace(0.0, xmax * 1.05, 60)
+    counts, edges = np.histogram(tnull, bins=bins)
+    if save_path is None:
+        input_file = Path(input_path)
+        save_path = input_file.with_name(input_file.stem + "_histbins.npz")
+    save_path = Path(save_path)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        save_path,
+        bin_edges=edges,
+        bin_counts=counts,
+        T_max_obs=tobs,
+        p_T=p_t,
+        sigma_T=sig_t
+    )
+    print(f"Binned histogram data saved to: {save_path}")
+    return save_path
+
+
+def load_global_t_null_binned_histogram_data(histbin_path):
+    data = np.load(histbin_path)
+
+    hist_data = {
+        "bin_edges": data["bin_edges"],
+        "bin_counts": data["bin_counts"],
+        "T_max_obs": float(data["T_max_obs"]),
+        "p_T": float(data["p_T"]),
+        "sigma_T": float(data["sigma_T"]),
+    }
+    return hist_data
+
+
+
+def plot_global_t_null_distribution_from_binned_data(
+    hist_data,
+    figsize=(8, 6),
+    color="#6A5ACD",
+    logy=False
+):
+    edges = np.asarray(hist_data["bin_edges"], dtype=np.float64)
+    counts = np.asarray(hist_data["bin_counts"], dtype=np.float64)
+    tobs = float(hist_data["T_max_obs"])
+    p_t = float(hist_data["p_T"])
+    sig_t = float(hist_data["sigma_T"])
+
+    lefts = edges[:-1]
+    widths = np.diff(edges)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    ax.bar(
+        lefts,
+        counts,
+        width=widths,
+        align="edge",
+        color=color,
+        alpha=0.85,
+        edgecolor="black",
+        linewidth=0.6,
+        label="Simulated Samples"
+    )
+
+    ax.axvline(
+        tobs,
+        color="crimson",
+        linestyle="--",
+        linewidth=2.2,
+        label=fr"Observed $\mathcal{{T}}_{{\max}}={tobs:.1f}$"
+    )
+
+    if logy:
+        ax.set_yscale("log")
+
+    ax.set_xlabel(r"$\mathcal{T}_{\max}$")
+    ax.set_ylabel("Counts")
+
+    txt = f"{sig_t:.1f}$\\sigma$"
+
+    ax.text(
+        1.05, 1e5, txt,
+        fontsize=16,
+    )
+
+    ax.legend(loc="upper right", fontsize=16)
+    plt.tight_layout()
+    plt.grid()
+
+    return fig
+
 #%%
 # ============================================================
 # M) Example main
@@ -2622,7 +2728,21 @@ if __name__ == "__main__":
 
     del fig_t
     gc.collect()
-
+#%%
+    # --------------------------------------------------------
+    # 11) Plot single working-point null distribution (use hist_data)
+    # --------------------------------------------------------
+    histbin_file = save_binned_histogram_data_from_global_t_null(outdir_global, fname_global)
+    
+    
+    hist_data = load_global_t_null_binned_histogram_data(histbin_file)
+    
+    fig_t = plot_global_t_null_distribution_from_binned_data(hist_data, logy=1)
+    
+    output_file = Path(outdir_global + '\\' + fname_global)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(output_file.with_suffix('.pdf'))
+    plt.show()
 #%%
     # --------------------------------------------------------
     # 12) Plot heatmap in the R-S plane
