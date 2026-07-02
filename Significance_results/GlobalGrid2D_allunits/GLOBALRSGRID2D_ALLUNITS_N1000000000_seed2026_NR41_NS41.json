@@ -1,0 +1,35 @@
+{
+  "config": {
+    "grid_type": "R_S_fast_exist_only",
+    "q_metric": "neg_logp",
+    "period_closeness": "continuous_S",
+    "N_global": 1000000000,
+    "chunk_size": 10000000,
+    "seed": 2026,
+    "N_units": 51,
+    "N_R": 41,
+    "N_S": 41
+  },
+  "marker": {
+    "target_pair_unitidx": [
+      3,
+      35
+    ],
+    "target_pair_mjd": [
+      59310,
+      59347
+    ],
+    "R_ref": 1.0,
+    "S_ref": 1.0,
+    "dP_ref": 0.0019400000000000528,
+    "dP_floor": 1e-05,
+    "S_max": 194.00000000000526,
+    "q_metric": "neg_logp",
+    "p_ref_weak": 0.00103,
+    "p_ref_strong": 5e-05,
+    "chi_ref_weak": 5.282492160797119,
+    "chi_ref_strong": 6.0480146408081055,
+    "Q_ref_weak": 2.9871627752948275,
+    "Q_ref_strong": 4.301029995663981
+  }
+}

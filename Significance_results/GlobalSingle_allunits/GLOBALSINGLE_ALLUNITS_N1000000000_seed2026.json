@@ -1,0 +1,57 @@
+{
+  "config": {
+    "target_pair_unitidx": [
+      3,
+      35
+    ],
+    "target_pair_mjd": [
+      59310,
+      59347
+    ],
+    "N_global": 1000000000,
+    "chunk_size": 10000000,
+    "seed": 2026,
+    "N_units": 51,
+    "statistic": "T_max",
+    "q_metric": "neg_logp",
+    "store_null_distributions": true
+  },
+  "working_point": {
+    "dP_obs": 0.0019400000000000528,
+    "Q_ref_strong": 4.301029995663981,
+    "Q_ref_weak": 2.9871627752948275
+  },
+  "observed_global_stats": {
+    "T_max_obs": 1.0,
+    "T_target_pair_obs": 1.0,
+    "R_target_pair_obs": 1.0,
+    "S_target_pair_obs": 1.0,
+    "dP_target_pair_obs": 0.0019400000000000528,
+    "best_T_pair_index": 178,
+    "best_T_pair_unitidx": [
+      3,
+      35
+    ],
+    "best_T_pair_mjd": [
+      59310,
+      59347
+    ],
+    "best_T_pair_P": [
+      1.7060300000000002,
+      1.7079700000000002
+    ],
+    "best_T_pair_dP": 0.0019400000000000528,
+    "best_T_pair_R": 1.0,
+    "best_T_pair_S": 1.0,
+    "best_T_pair_T": 1.0
+  },
+  "results": {
+    "p_T": 2e-08,
+    "sigma_T": 5.49085175210435,
+    "n_exceed_T": 20,
+    "null_T_mean": 0.10905655473470688,
+    "null_T_std": 0.05335063859820366,
+    "null_T_min": 0.010661868378520012,
+    "null_T_max": 1.162512183189392
+  }
+}
