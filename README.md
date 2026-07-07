@@ -17,7 +17,7 @@ If you are interested in the figures from the manuscript, please refer to the fo
 
 ## 🔬 Simulated Data Generation
 
-The following notebooks contain the steps for generating the simulated data.
+The following files contain the code for generating the simulated data.
 
 * `Significance_analysis.py` is used to generate the simulated data required for plotting Figures 8,  9, 10. The steps correspond to the "Statistical significance of the periodicity" subsection.
 * `Multiple_emission_sites.py` is used to generate the simulated data required for plotting Supplementary Figure 4. The steps correspond to the "Effects of multiple emitting sites" subsection.
@@ -30,6 +30,6 @@ The following notebooks contain the steps for generating the simulated data.
 * The `Data` folder contains all data tables and the necessary data for figure generation.
 * The `Periodograms` folder contains the periodicity search results for all observing days.
 * The `Folded_phases` folder contains the phase distributions for all observing days.
-* The `Significance_results` folders contains the simulated data of significance analysis.
-* The `Comparison_results` folders contains the simulated data of comparison analysis.
+* The `Significance_results` folder contains the simulated data of significance analysis.
+* The `Comparison_results` folder contains the simulated data of comparison analysis.
 
