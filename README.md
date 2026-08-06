@@ -27,7 +27,7 @@ The following files contain the code for generating the simulated data.
 
 ## 📁 Repository Structure
 
-* The `Data` folder contains all data tables and the necessary data for figure generation.
+* The `Data` folder contains all the burst tables and other necessary data.
 * The `Periodograms` folder contains the periodicity search results for all observing days.
 * The `Folded_phases` folder contains the phase distributions for all observing days.
 * The `Significance_results` folder contains the simulated data of significance analysis.
