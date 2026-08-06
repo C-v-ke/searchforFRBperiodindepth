@@ -32,4 +32,5 @@ The following files contain the code for generating the simulated data.
 * The `Folded_phases` folder contains the phase distributions for all observing days.
 * The `Significance_results` folder contains the simulated data of significance analysis.
 * The `Comparison_results` folder contains the simulated data of comparison analysis.
+* The `FITS_start_end` folder contains the start and end times extracted from the FITS files using `Extracting_FITS_start_end.py`.
 
