@@ -2481,10 +2481,10 @@ if __name__ == "__main__":
     ugmrt_path = r"Data\20201124A\Burst_Table\uGMRT.csv"
     eff_path   = r"Data\20201124A\Burst_Table\Effelsberg.csv"
 
-    fast1_win_txt = r"Data\20201124A\windows1\FRB20201124A_fast1_obswindow_TCB_LTT.txt"
-    fast2_win_txt = r"Data\20201124A\windows1\FRB20201124A_fast2_obswindow_TDB.txt"
-    ugmrt_win_txt = r"Data\20201124A\windows1\FRB20201124A_ugmrt_obswindow_TDB.txt"
-    eff_win_txt   = r"Data\20201124A\windows1\FRB20201124A_effelsberg_obswindow_TDB.txt"
+    fast1_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_fast1_obswindow_TCB_LTT.txt"
+    fast2_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_fast2_obswindow_TDB.txt"
+    ugmrt_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_ugmrt_obswindow_TDB.txt"
+    eff_win_txt   = r"Data\20201124A\Obs_session_window\FRB20201124A_effelsberg_obswindow_TDB.txt"
 
     # --------------------------------------------------------
     # 1) Directly load all window files
@@ -2570,7 +2570,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # 6) Build and save unit libraries
     # --------------------------------------------------------
-    outdir_daylib = r"MC_Samples_Main\\UnitLibraries_allunits"
+    outdir_daylib = r"Significance_results\\UnitLibraries_allunits"
     N_mc_day = 10   # if set to 100000, runtime would be ~ 2 day
     sim_chunk_size = max(1, N_mc_day // 20)
 
@@ -2588,7 +2588,7 @@ if __name__ == "__main__":
     print("Saved libraries:", len(paths))
     
 #%%
-    outdir_daylib = r"MC_Samples_Main\\UnitLibraries_allunits"
+    outdir_daylib = r"Significance_results\\UnitLibraries_allunits"
     # --------------------------------------------------------
     # 7) Load + calibrate libraries
     # --------------------------------------------------------
@@ -2640,7 +2640,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # Save single-point results 
     # --------------------------------------------------------
-    outdir_global = r"MC_Samples_Main\\GlobalSingle_allunits"
+    outdir_global = r"Significance_results\\GlobalSingle_allunits"
     fname_global = build_filename_from_global_single_meta(meta_single, 
                                                           prefix="GLOBALSINGLE_ALLUNITS")
 
@@ -2700,7 +2700,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     #  Save gridscan results 
     # --------------------------------------------------------
-    outdir_grid2d = r"MC_Samples_Main\\GlobalGrid2D_allunits"
+    outdir_grid2d = r"Significance_results\\GlobalGrid2D_allunits"
     fname_grid2d = build_filename_from_global_RSgrid2d_meta(meta_grid, 
                                                             prefix="GLOBALRSGRID2D_ALLUNITS")
     
