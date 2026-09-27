@@ -12,6 +12,7 @@ from scipy.stats import expon
 from numba import njit, prange, get_thread_id, get_num_threads
 import time
 import pandas as pd
+from pathlib import Path
 
 # Data Reading
 def Xreaddata(path, col_indices, new_col_names, startrow=0):
@@ -30,7 +31,7 @@ def Xreaddata(path, col_indices, new_col_names, startrow=0):
     df = df.reset_index(drop=True)
     return df_0, df
     
-b_fast1=Xreaddata('Data\\20201124A\\Burst_Table\\FAST#1.csv',
+b_fast1=Xreaddata('Data/20201124A/Burst_Table/FAST#1.csv',
             [0,2,6,4],['t','s','w','f'],
             startrow=0)
 #%%
@@ -360,20 +361,28 @@ def mctest_chi2_joint(pstart, pend, step, dayrange, num, threshold, mode, para, 
     }
     return mc_results
 
-mc_results_chi2=mctest_chi2_joint(null_hypothesis='uniform',pstart=0.1,pend=10,step=1e-7,dayrange=[3,35],
-                                  num=1, # if set to 500 the runtime would be ~ 1 hr
-                                  threshold=0.4,mode='brightest', para=30, seed=1)
-pf='MC Samples_Comparison\\'
-filename=(f'chi2_null{mc_results_chi2['null_hypothesis']}_seed{mc_results_chi2['seed']}_b{mc_results_chi2['bins_num']}_num{mc_results_chi2['num']}'
-         f'_ps{mc_results_chi2['pstart']}_pe{mc_results_chi2['pend']}_step{mc_results_chi2['step']}'
-         f'_th{mc_results_chi2['threshold']}_{mc_results_chi2['mode']}.npz')
-np.savez_compressed(pf+filename, **mc_results_chi2)
+if __name__ == "__main__":
+    output_dir = Path('Comparison_results')
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-mc_results_chi2=mctest_chi2_joint(null_hypothesis='lognormal',pstart=0.1,pend=10,step=1e-7,dayrange=[3,35],
-                                  num=1, # if set to 500 the runtime would be ~ 1 hr
-                                  threshold=0.4,mode='brightest', para=30, seed=1)
-pf='MC Samples_Comparison\\'
-filename=(f'chi2_null{mc_results_chi2['null_hypothesis']}_seed{mc_results_chi2['seed']}_b{mc_results_chi2['bins_num']}_num{mc_results_chi2['num']}'
-         f'_ps{mc_results_chi2['pstart']}_pe{mc_results_chi2['pend']}_step{mc_results_chi2['step']}'
-         f'_th{mc_results_chi2['threshold']}_{mc_results_chi2['mode']}.npz')
-np.savez_compressed(pf+filename, **mc_results_chi2)
+    for null_hypothesis in ('uniform', 'lognormal'):
+        mc_results_chi2 = mctest_chi2_joint(
+            null_hypothesis=null_hypothesis,
+            pstart=0.1,
+            pend=10,
+            step=1e-7,
+            dayrange=[3, 35],
+            num=1,  # Set to 500 to reproduce the archived full simulation (~1 h).
+            threshold=0.4,
+            mode='brightest',
+            para=30,
+            seed=1,
+        )
+        filename = (
+            f"chi2_null{mc_results_chi2['null_hypothesis']}_seed{mc_results_chi2['seed']}"
+            f"_b{mc_results_chi2['bins_num']}_num{mc_results_chi2['num']}"
+            f"_ps{mc_results_chi2['pstart']}_pe{mc_results_chi2['pend']}"
+            f"_step{mc_results_chi2['step']}_th{mc_results_chi2['threshold']}"
+            f"_{mc_results_chi2['mode']}.npz"
+        )
+        np.savez_compressed(output_dir / filename, **mc_results_chi2)

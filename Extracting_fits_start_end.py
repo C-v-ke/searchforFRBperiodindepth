@@ -1,18 +1,22 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 This script extracts the start and end times from FITS files.
 """
 
-#!/usr/bin/env python3
+import argparse
 import os
 import glob
 import numpy as np
 from astropy.io import fits
 from decimal import Decimal, getcontext, ROUND_DOWN
 
-import sys
-data_dir = sys.argv[1]
-# data_dir = '/media/cvke/Duchen/PT2025_0030/FRB20201124A/20251008'
+parser = argparse.ArgumentParser(
+    description="Extract start and end times from PSRFITS files in a directory."
+)
+parser.add_argument("data_dir", help="Directory containing the input .fits files")
+args = parser.parse_args()
+data_dir = args.data_dir
 
 # Set the decimal precision
 getcontext().prec = 30

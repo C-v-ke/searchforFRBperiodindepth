@@ -1,0 +1,35 @@
+{
+  "title": "A second-scale periodicity in an active repeating fast radio burst source: source code and data",
+  "description": "Source code, analysis inputs and generated data products used for the period searches, phase-folding analyses, statistical-significance calculations, simulations, and figure generation reported in the associated manuscript.",
+  "creators": [
+    {"name": "Du, Chen"},
+    {"name": "Huang, Yong-Feng"},
+    {"name": "Geng, Jin-Jun"},
+    {"name": "Gao, Hao-Xuan"},
+    {"name": "Zhang, Li"},
+    {"name": "Deng, Chen"},
+    {"name": "Cui, Lang"},
+    {"name": "Liao, Jie"},
+    {"name": "Jiang, Peng-Fei"},
+    {"name": "Zhang, Liang"},
+    {"name": "Wang, Pei"},
+    {"name": "Hu, Chen-Ran"},
+    {"name": "Dong, Xiao-Fei"},
+    {"name": "Xu, Fan"},
+    {"name": "Li, Liang"},
+    {"name": "Zou, Ze-Cheng"},
+    {"name": "Kurban, Abdusattar"}
+  ],
+  "version": "1.0.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "fast radio bursts",
+    "FRB 20201124A",
+    "periodicity",
+    "magnetars",
+    "time-domain astronomy"
+  ]
+}

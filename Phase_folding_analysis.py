@@ -84,20 +84,20 @@ def Xreaddata(path, col_indices, new_col_names, startrow=0):
     df = df.reset_index(drop=True)
     return df_0, df
     
-b_fast1=Xreaddata('Data\\20201124A\\Burst_Table\\FAST#1.csv',
+b_fast1=Xreaddata('Data/20201124A/Burst_Table/FAST#1.csv',
             [0,2,6,4],['t','s','w','f'],
             startrow=0)
 
-b_fast2=Xreaddata('Data\\20201124A\\Burst_Table\\FAST#2.csv',
+b_fast2=Xreaddata('Data/20201124A/Burst_Table/FAST#2.csv',
             [2,5,4,7],['t','s','w','f'],
             startrow=2) 
 b_fast2[1]['s']=b_fast2[1]['s']/1000
 
-b_ugmrt=Xreaddata('Data\\20201124A\\Burst_Table\\uGMRT.csv',
+b_ugmrt=Xreaddata('Data/20201124A/Burst_Table/uGMRT.csv',
             [1,4,2,5],['t','s','w','f'],
             startrow=0)  
 
-b_effelsberg=Xreaddata('Data\\20201124A\\Burst_Table\\Effelsberg.csv',
+b_effelsberg=Xreaddata('Data/20201124A/Burst_Table/Effelsberg.csv',
             [1,5,3,7],['t','s','w','f'],
             startrow=0)  
 
@@ -1007,4 +1007,3 @@ if __name__ == "__main__":
     
         print_uniformity_summary(result)
         # plt.close()
-        

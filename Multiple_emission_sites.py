@@ -9,6 +9,7 @@ import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 from numba import jit
+from pathlib import Path
 
 
 def generate_phase_centers(m, max_wid, min_gap, rng):
@@ -153,5 +154,7 @@ if __name__ == "__main__":
             chi2_matrix[i, j] = np.mean(chi2_array)
         print(f"Finished N_burst={n}")
     
-    np.save(r"Data\chi2_matrix.npy", chi2_matrix)
+    output_path = Path("Data") / "chi2_matrix.npy"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    np.save(output_path, chi2_matrix)
     

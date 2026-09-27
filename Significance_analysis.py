@@ -2346,9 +2346,9 @@ def plot_q_null_distribution(libs, figsize=(8, 6)):
         )
     )
     
-    ax.text(Q_obs_1*1.01, 2e4, f'{z_mix_1:.1f}$\\sigma$',
+    ax.text(Q_obs_1*1.01, 8e3, f'{z_mix_1:.1f}$\\sigma$',
              fontsize=16)
-    ax.text(Q_obs_2*1.01, 2e4, f'{z_mix_2:.1f}$\\sigma$',
+    ax.text(Q_obs_2*1.01, 8e3, f'{z_mix_2:.1f}$\\sigma$',
              fontsize=16)
     
     
@@ -2371,7 +2371,7 @@ def save_binned_histogram_data_from_global_t_null(outdir_global, fname_global, s
     - p_T
     - sigma_T
     """
-    input_path = outdir_global + '\\' + fname_global
+    input_path = Path(outdir_global) / fname_global
     meta_single, arr_single, _ = load_global_single_result(input_path)
     tnull = np.asarray(arr_single["T_null_distribution"], dtype=np.float64)
     tobs = float(meta_single["observed_global_stats"]["T_max_obs"])
@@ -2457,7 +2457,7 @@ def plot_global_t_null_distribution_from_binned_data(
     txt = f"{sig_t:.1f}$\\sigma$"
 
     ax.text(
-        1.05, 1e5, txt,
+        1.01, 1e4, txt,
         fontsize=16,
     )
 
@@ -2476,15 +2476,15 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # 0) File paths
     # --------------------------------------------------------
-    fast1_path = r"Data\20201124A\Burst_Table\FAST#1.csv"
-    fast2_path = r"Data\20201124A\Burst_Table\FAST#2.csv"
-    ugmrt_path = r"Data\20201124A\Burst_Table\uGMRT.csv"
-    eff_path   = r"Data\20201124A\Burst_Table\Effelsberg.csv"
+    fast1_path = "Data/20201124A/Burst_Table/FAST#1.csv"
+    fast2_path = "Data/20201124A/Burst_Table/FAST#2.csv"
+    ugmrt_path = "Data/20201124A/Burst_Table/uGMRT.csv"
+    eff_path   = "Data/20201124A/Burst_Table/Effelsberg.csv"
 
-    fast1_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_fast1_obswindow_TCB_LTT.txt"
-    fast2_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_fast2_obswindow_TDB.txt"
-    ugmrt_win_txt = r"Data\20201124A\Obs_session_window\FRB20201124A_ugmrt_obswindow_TDB.txt"
-    eff_win_txt   = r"Data\20201124A\Obs_session_window\FRB20201124A_effelsberg_obswindow_TDB.txt"
+    fast1_win_txt = "Data/20201124A/Obs_session_window/FRB20201124A_fast1_obswindow_TCB_LTT.txt"
+    fast2_win_txt = "Data/20201124A/Obs_session_window/FRB20201124A_fast2_obswindow_TDB.txt"
+    ugmrt_win_txt = "Data/20201124A/Obs_session_window/FRB20201124A_ugmrt_obswindow_TDB.txt"
+    eff_win_txt   = "Data/20201124A/Obs_session_window/FRB20201124A_effelsberg_obswindow_TDB.txt"
 
     # --------------------------------------------------------
     # 1) Directly load all window files
@@ -2570,7 +2570,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # 6) Build and save unit libraries
     # --------------------------------------------------------
-    outdir_daylib = r"Significance_results\\UnitLibraries_allunits"
+    outdir_daylib = "Significance_results/UnitLibraries_allunits"
     N_mc_day = 10   # if set to 100000, runtime would be ~ 2 day
     sim_chunk_size = max(1, N_mc_day // 20)
 
@@ -2588,7 +2588,7 @@ if __name__ == "__main__":
     print("Saved libraries:", len(paths))
     
 #%%
-    outdir_daylib = r"Significance_results\\UnitLibraries_allunits"
+    outdir_daylib = "Significance_results/UnitLibraries_allunits"
     # --------------------------------------------------------
     # 7) Load + calibrate libraries
     # --------------------------------------------------------
@@ -2640,7 +2640,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     # Save single-point results 
     # --------------------------------------------------------
-    outdir_global = r"Significance_results\\GlobalSingle_allunits"
+    outdir_global = "Significance_results/GlobalSingle_allunits"
     fname_global = build_filename_from_global_single_meta(meta_single, 
                                                           prefix="GLOBALSINGLE_ALLUNITS")
 
@@ -2700,7 +2700,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
     #  Save gridscan results 
     # --------------------------------------------------------
-    outdir_grid2d = r"Significance_results\\GlobalGrid2D_allunits"
+    outdir_grid2d = "Significance_results/GlobalGrid2D_allunits"
     fname_grid2d = build_filename_from_global_RSgrid2d_meta(meta_grid, 
                                                             prefix="GLOBALRSGRID2D_ALLUNITS")
     
@@ -2718,10 +2718,10 @@ if __name__ == "__main__":
     # 11) Plot single working-point null distribution
     # --------------------------------------------------------
 
-    meta_single, arr_single,_=load_global_single_result(outdir_global+'\\'+fname_global)
+    meta_single, arr_single,_=load_global_single_result(Path(outdir_global) / fname_global)
     
     fig_t = plot_global_t_null_distribution(meta_single, arr_single, logy=1)
-    output_file = Path(outdir_global+'\\'+fname_global)
+    output_file = Path(outdir_global) / fname_global
     output_file.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_file.with_suffix('.pdf'))
     plt.show()
@@ -2739,7 +2739,7 @@ if __name__ == "__main__":
     
     fig_t = plot_global_t_null_distribution_from_binned_data(hist_data, logy=1)
     
-    output_file = Path(outdir_global + '\\' + fname_global)
+    output_file = Path(outdir_global) / fname_global
     output_file.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_file.with_suffix('.pdf'))
     plt.show()
@@ -2749,7 +2749,7 @@ if __name__ == "__main__":
     # --------------------------------------------------------
 
 
-    meta_grid, arr_grid, _ = load_global_RSgrid2d_result(outdir_grid2d+'\\'+fname_grid2d)
+    meta_grid, arr_grid, _ = load_global_RSgrid2d_result(Path(outdir_grid2d) / fname_grid2d)
 
     fig_grid = plot_global_RS_grid_heatmap(
         meta_grid,
@@ -2758,7 +2758,7 @@ if __name__ == "__main__":
         mark_target=True,
         draw_diagonal=0,
     )
-    output_file = Path(outdir_grid2d+'\\'+fname_grid2d)
+    output_file = Path(outdir_grid2d) / fname_grid2d
     output_file.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_file.with_suffix('.pdf'))
     plt.show()
@@ -2767,6 +2767,6 @@ if __name__ == "__main__":
     gc.collect()
 #%%
     fig_q = plot_q_null_distribution(libs, figsize=(8, 6))
-    output_file = Path(outdir_daylib+'\\'+'Q_ALL_EPOCH')
+    output_file = Path(outdir_daylib) / 'Q_ALL_EPOCH'
     output_file.parent.mkdir(parents=True, exist_ok=True)
     plt.savefig(output_file.with_suffix('.pdf'))

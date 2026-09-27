@@ -1,0 +1,11 @@
+astropy
+brokenaxes
+joblib
+jupyter
+matplotlib
+numba
+numpy
+pandas
+scipy
+seaborn
+tqdm
