@@ -17,14 +17,14 @@ Run the scripts and notebooks from the repository root so that the relative data
 ## Figure-generation notebooks
 
 - Main Figures 1–10: [`Plotting_Figures.ipynb`](Plotting_Figures.ipynb)
-- Supplementary Figures 1–9: [`Plotting_Supplementary_Figures.ipynb`](Plotting_Supplementary_Figures.ipynb)
+- Supplementary Figures 1–11: [`Plotting_Supplementary_Figures.ipynb`](Plotting_Supplementary_Figures.ipynb)
 
 ## Analysis and simulation scripts
 
 - `Phase_folding_analysis.py` implements the phase-folding and period-search analysis.
 - `Significance_analysis.py` generates the simulations used for Main Figures 8–10. Full-scale settings are documented next to the reduced example settings in the script.
-- `Multiple_emission_sites.py` generates the simulations used for Supplementary Figure 9.
-- `Comparison_analysis.py` generates the simulations used for Supplementary Figures 5 and 7.
+- `Multiple_emission_sites.py` generates the simulations used for Supplementary Figure 11.
+- `Comparison_analysis.py` generates the simulations used for Supplementary Figures 4 and 6.
 - `Extracting_fits_start_end.py` extracts start and end times from PSRFITS files.
 
 ## Repository structure
