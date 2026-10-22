@@ -38,7 +38,7 @@ Run the scripts and notebooks from the repository root so that the relative data
 
 ## Reproducibility notes
 
-The plotting notebooks load the precomputed products included in this repository. Several full-scale simulations use up to $10^9$ trials and therefore require substantially more computation than the reduced examples provided in the scripts. Random seeds and the full-scale parameter values are recorded in the scripts and in the filenames or metadata of the archived outputs.
+The plotting notebooks load the precomputed products included in this repository. Random seeds and the full-scale parameter values are recorded in the scripts and in the filenames or metadata of the archived outputs.
 
 ## Licenses
 
